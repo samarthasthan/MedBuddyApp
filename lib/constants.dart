@@ -21,6 +21,7 @@ class APIUrls {
 
 const primaryBackgroundColor = Color.fromARGB(255, 241, 244, 254);
 const primaryColor = Color(0xFF3B63DA);
+const scannerBackground = Color(0xFF0A0F1E);
 const gradientColor1 = Color.fromARGB(
   255,
   92,

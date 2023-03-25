@@ -1,8 +1,11 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medbuddyapp/constants.dart';
+import 'package:medbuddyapp/views/scanner/scanner.dart';
+import 'package:path/path.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class HomePage extends StatelessWidget {
@@ -484,10 +487,26 @@ class Header extends StatelessWidget {
                   color: primaryColor,
                 ),
               ),
-              Icon(
-                PhosphorIcons.scanFill,
-                size: 26.0.sp,
-                color: primaryColor,
+              GestureDetector(
+                child: Icon(
+                  PhosphorIcons.scanFill,
+                  size: 26.0.sp,
+                  color: primaryColor,
+                ),
+                onTap: () async {
+                  // Obtain a list of the available cameras on the device.
+                  final cameras = await availableCameras();
+
+                  // Get a specific camera from the list of available cameras.
+                  final firstCamera = cameras.first;
+                  // ignore: use_build_context_synchronously
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (Context) => ScannerPage(
+                                camera: firstCamera,
+                              )));
+                },
               ),
             ],
           ),
