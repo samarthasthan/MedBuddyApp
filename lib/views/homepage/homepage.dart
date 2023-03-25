@@ -45,14 +45,15 @@ class HomePage extends StatelessWidget {
                         controller: scrollController,
                         itemCount: 10,
                         itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 20.h,
-                              width: double.infinity,
-                              color: Colors.red,
-                            ),
-                          );
+                          if (index == 0) {
+                            return CallSection();
+                          }
+                          if (index == 1) {
+                            return TrackSection();
+                          }
+                          if (index == 2) {
+                            return DoctorSection();
+                          }
                         }),
                   ),
                   const SizedBox(
@@ -67,6 +68,201 @@ class HomePage extends StatelessWidget {
           }),
         )
       ]),
+    );
+  }
+}
+
+class DoctorSection extends StatelessWidget {
+  const DoctorSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 10.w, top: 5.h, right: 10.w),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              DefaultTextStyle(
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16.sp,
+                    color: Colors.black),
+                child: const Text('Our Specialists'),
+              ),
+              Text(
+                'See All',
+                style: TextStyle(fontSize: 10.sp),
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 40.h,
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Container(
+                  width: 83.w,
+                  height: 33.h,
+                  decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.circular(50)),
+                  child: Center(
+                    child: DefaultTextStyle(
+                      style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16.sp,
+                          color: Colors.white),
+                      child: const Text('ENT'),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        SizedBox(
+          height: 110.h,
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int index) {
+              return CallItem();
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class TrackSection extends StatelessWidget {
+  const TrackSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 10.w, top: 5.h, right: 10.w),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              DefaultTextStyle(
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16.sp,
+                    color: Colors.black),
+                child: const Text('Your Medicines'),
+              ),
+              Text(
+                'See Track',
+                style: TextStyle(fontSize: 10.sp),
+              )
+            ],
+          ),
+        ),
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              height: 100,
+              child: Image.asset("assets/images/track.png"),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class CallSection extends StatelessWidget {
+  const CallSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 10.w, top: 5.h, right: 10.w),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              DefaultTextStyle(
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16.sp,
+                    color: Colors.black),
+                child: const Text('Call doctor now'),
+              ),
+              Text(
+                'See All',
+                style: TextStyle(fontSize: 10.sp),
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 120.h,
+          child: ListView(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            children: const [
+              CallItem(),
+              CallItem(),
+              CallItem(),
+              CallItem(),
+              CallItem(),
+              CallItem(),
+              CallItem(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class CallItem extends StatelessWidget {
+  const CallItem({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        children: [
+          CircleAvatar(
+              radius: 30,
+              backgroundColor: primaryBackgroundColor,
+              child: SvgPicture.asset('assets/icons/medicine.svg')),
+          Padding(
+            padding: EdgeInsets.only(top: 6.h),
+            child: DefaultTextStyle(
+              style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 12.sp,
+                  color: Colors.black),
+              child: const Text('Nurse'),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
